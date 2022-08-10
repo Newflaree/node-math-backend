@@ -1,4 +1,5 @@
 const express = require( 'express' );
+const cors = require( 'cors' );
 
 class Server {
   constructor() {
@@ -6,6 +7,9 @@ class Server {
     this.port = process.env.PORT || '3001';
 
     //TODO: Call Init methods
+    // dbConnect();
+    this.middlewares();
+    // routes();
   }
 
   async dbConnect() {
@@ -13,7 +17,9 @@ class Server {
   }
 
   middlewares() {
-    throw new Error( 'Method not implemented' );
+    this.app.use( cors() );
+    this.app.use( express.json() );
+    this.app.use( express.static( 'public' ) );
   }
 
   routes() {
