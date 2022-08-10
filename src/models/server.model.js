@@ -1,5 +1,7 @@
 const express = require( 'express' );
 const cors = require( 'cors' );
+// Database Config
+const { dbConnection } = require('../database');
 // Routes
 const { authRouter } = require('../routes');
 
@@ -11,14 +13,13 @@ class Server {
       auth: '/api/auth'
     }
 
-    //TODO: Call Init methods
-    // dbConnect();
+    this.dbConnect();
     this.middlewares();
     this.routes();
   }
 
   async dbConnect() {
-    throw new Error( 'Method not implemented' );
+    await dbConnection();
   }
 
   middlewares() {
