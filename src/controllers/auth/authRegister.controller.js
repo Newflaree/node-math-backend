@@ -2,6 +2,7 @@ const { request, response } = require("express");
 const bcrypt = require( 'bcryptjs' );
 // Models
 const User = require("../../models/user.model");
+const {generateJWT} = require("../../helpers/jwt");
 
 /*
   PATH: '/api/auth/register'
@@ -19,11 +20,13 @@ const authRegister = async ( req = request, res = response ) => {
     // Save to DB
     await newUser.save();
 
-    // TODO: Generate JWT
+    // Generate JWT
+    const token = await generateJWT( newUser.uid );
 
     res.status( 201 ).json({
       ok: true,
-      newUser
+      newUser,
+      token
     });
 
   } catch ( err ) {
