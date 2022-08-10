@@ -1,15 +1,20 @@
 const express = require( 'express' );
 const cors = require( 'cors' );
+// Routes
+const { authRouter } = require('../routes');
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '3001';
+    this.apiPaths = {
+      auth: '/api/auth'
+    }
 
     //TODO: Call Init methods
     // dbConnect();
     this.middlewares();
-    // routes();
+    this.routes();
   }
 
   async dbConnect() {
@@ -23,7 +28,7 @@ class Server {
   }
 
   routes() {
-    throw new Error( 'Method not implemented' );
+    this.app.use( this.apiPaths.auth, authRouter );
   }
 
   listen() {
