@@ -9,7 +9,7 @@ const {
 } = require("../controllers/users");
 // Helpers
 // Middlewares
-const { validateFields } = require("../middlewares");
+const { validateFields, validateJWT } = require("../middlewares");
 
 /*
   PATH: '/api/users'
@@ -17,18 +17,22 @@ const { validateFields } = require("../middlewares");
 const router = Router();
 
 router.get( '/', [
+  validateJWT,
   validateFields
 ], getUsers );
 
 router.get( '/:id', [
+  validateJWT,
   validateFields
 ], getUser );
 
 router.put( '/:id', [
+  validateJWT,
   validateFields
 ], updateUser );
 
 router.delete( '/:id', [
+  validateJWT,
   validateFields
 ], deleteUser );
 

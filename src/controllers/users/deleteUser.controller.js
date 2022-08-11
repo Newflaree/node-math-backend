@@ -3,7 +3,7 @@ const { request, response } = require("express");
 // Models
 
 /*
-  PATH: '/api/users/'
+  PATH: '/api/users/:id'
 */
 const deleteUser = async ( req = request, res = response ) => {
   try {
