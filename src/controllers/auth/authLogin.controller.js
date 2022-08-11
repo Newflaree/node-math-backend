@@ -32,7 +32,7 @@ const authLogin = async ( req = request, res = response ) => {
     }
 
     // Generate JWT
-    const token = await generateJWT( user.uid );
+    const token = await generateJWT( user._id.toString() );
 
     res.status( 200 ).json({
       ok: true,

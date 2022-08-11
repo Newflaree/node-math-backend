@@ -2,7 +2,7 @@ const { request, response } = require("express");
 const bcrypt = require( 'bcryptjs' );
 // Models
 const User = require("../../models/user.model");
-const {generateJWT} = require("../../helpers/jwt");
+const { generateJWT } = require("../../helpers/jwt");
 
 /*
   PATH: '/api/auth/register'
@@ -21,7 +21,7 @@ const authRegister = async ( req = request, res = response ) => {
     await newUser.save();
 
     // Generate JWT
-    const token = await generateJWT( newUser.uid );
+    const token = await generateJWT( newUser._id.toString() );
 
     res.status( 201 ).json({
       ok: true,

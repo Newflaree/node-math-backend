@@ -15,10 +15,10 @@ const validateJWT = async ( req = request, res = response, next ) => {
 
   try {
     const { uid } = jwt.verify( token, process.env.SECRET_KEY || '' );
-    const user = await User.findById({ uid });
+    const user = await User.findById(  uid );
 
     if ( !user || !user.status ) {
-      return res.status( 401 ).json({
+      res.status( 401 ).json({
         ok: false,
         msg: 'Token is invalid'
       });

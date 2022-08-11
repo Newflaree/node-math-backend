@@ -1,6 +1,6 @@
-const { emailValidator } = require("./users");
+const users = require("./users");
 
 module.exports = {
-  emailValidator
+  ...users
 }
 
