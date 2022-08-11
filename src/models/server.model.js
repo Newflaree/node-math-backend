@@ -1,16 +1,20 @@
 const express = require( 'express' );
 const cors = require( 'cors' );
 // Database Config
-const { dbConnection } = require('../database');
+const { dbConnection } = require( '../database' );
 // Routes
-const { authRouter } = require('../routes');
+const {
+  authRouter,
+  usersRouter
+} = require( '../routes' );
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT || '3001';
     this.apiPaths = {
-      auth: '/api/auth'
+      auth: '/api/auth',
+      users: '/api/users'
     }
 
     this.dbConnect();
@@ -30,6 +34,7 @@ class Server {
 
   routes() {
     this.app.use( this.apiPaths.auth, authRouter );
+    this.app.use( this.apiPaths.users, usersRouter );
   }
 
   listen() {
