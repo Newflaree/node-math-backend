@@ -18,7 +18,7 @@ const validateJWT = async ( req = request, res = response, next ) => {
     const user = await User.findById(  uid );
 
     if ( !user || !user.status ) {
-      res.status( 401 ).json({
+      return res.status( 401 ).json({
         ok: false,
         msg: 'Token is invalid'
       });

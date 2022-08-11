@@ -19,6 +19,7 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
+    emun: [ 'USER_ROLE', 'ADMIN_ROLE' ],
     default: 'USER_ROLE'
   },
   status: {
