@@ -8,6 +8,7 @@ const {
   deleteUser
 } = require("../controllers/users");
 // Helpers
+const { userIdValidator } = require("../helpers/db");
 // Middlewares
 const {
   validateFields,
@@ -27,17 +28,24 @@ router.get( '/', [
 ], getUsers );
 
 router.get( '/:id', [
-  validateJWT,
+  check( 'id', 'Invalid Id' ).isMongoId(),
+  check( 'id' ).custom( userIdValidator ),
   validateFields
 ], getUser );
 
 router.put( '/:id', [
   validateJWT,
+  validateRole,
+  check( 'id', 'Invalid Id' ).isMongoId(),
+  check( 'id' ).custom( userIdValidator ),
   validateFields
 ], updateUser );
 
 router.delete( '/:id', [
   validateJWT,
+  validateRole,
+  check( 'id', 'Invalid Id' ).isMongoId(),
+  check( 'id' ).custom( userIdValidator ),
   validateFields
 ], deleteUser );
 

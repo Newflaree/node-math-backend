@@ -9,5 +9,5 @@ const emailValidator = async ( email = '' ) => {
 
   return true;
 }
-
 module.exports = { emailValidator };
+
